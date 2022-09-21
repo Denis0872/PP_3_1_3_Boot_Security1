@@ -25,7 +25,7 @@ public class AdminController {
         return "add_user";
     }
 
-    @PostMapping("/add") // Map ONLY POST Requests
+    @PostMapping("/add")
     public String addUser(@ModelAttribute("user") User user) {
         user.setActive(true);
         userRepository.save(user);

@@ -16,21 +16,14 @@ import java.util.Set;
 @Component
 public class SuccessUserHandler implements AuthenticationSuccessHandler {
 
-    @Autowired
-    private UserRepository userRepository;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
-
         Set<String> roles = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
         if (roles.contains("ADMIN")) {
-            User admin = userRepository.findByUsername(authentication.getName());
-            httpServletResponse.sendRedirect("/admin/" + admin.getId());
-        } else if (roles.contains("USER")) {
-            User user = userRepository.findByUsername(authentication.getName());
-            httpServletResponse.sendRedirect("/user/" + user.getId());
+            httpServletResponse.sendRedirect("/admin");
         } else {
-            httpServletResponse.sendRedirect("/");
+            httpServletResponse.sendRedirect("/user");
         }
 
     }
