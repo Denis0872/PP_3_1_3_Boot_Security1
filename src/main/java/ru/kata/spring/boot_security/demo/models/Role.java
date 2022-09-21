@@ -6,18 +6,19 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "user_role")
+@Table(name = "roles")
 public class Role implements GrantedAuthority {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
+    @Column(name = "role_id", nullable = false)
     private Long id;
 
-    @Column(name = "roles", unique = true)
+    @Column(name = "name", unique = true)
     private String userRole;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
+
+
 
     public Role() {
     }

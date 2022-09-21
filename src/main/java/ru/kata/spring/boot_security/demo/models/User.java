@@ -65,7 +65,7 @@ public class User implements UserDetails {
     @Fetch(FetchMode.JOIN)
     @JoinTable(name = "user_role",
             joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
     private Set<Role> roles = new HashSet<>();
 
 
